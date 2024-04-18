@@ -19,17 +19,10 @@ function draw() {
 
 class Chessboard {
     constructor() {
-        this.whitePieces = [];
-        this.blackPieces = [];
+        this.pieces = [];
+        
     }
-
-    setupPieces() {
-        for (let i = 0; i < 8; i++) {
-            this.whitePieces.push(createVector(floor(random(boardSize)), floor(random(boardSize))));
-            this.blackPieces.push(createVector(floor(random(boardSize)), floor(random(boardSize))));
-        }
-    }
-
+    
     drawBoard() {
         for (let y = 0; y < boardSize; y++) {
             for (let x = 0; x < boardSize; x++) {
@@ -43,15 +36,26 @@ class Chessboard {
         }
     }
 
-    drawPieces() {
-        fill("gray");
-        this.whitePieces.forEach(piece => {
-            ellipse(piece.x * tileSize + tileSize / 2, piece.y * tileSize + tileSize / 2, tileSize / 2);
-        });
-
-        fill("yellow");
-        this.blackPieces.forEach(piece => {
-            ellipse(piece.x * tileSize + tileSize / 2, piece.y * tileSize + tileSize / 2, tileSize / 2);
-        });
+    setupPieces() {
+        for (let i = 0; i < 16; i++) {
+            this.pieces.push(createVector(floor(random(boardSize)), floor(random(boardSize))));
+        }
+        
     }
+    drawPieces() {
+       
+        fill("green");
+        for (let i = 0; i < 8; i++) {
+          const piece = this.pieces[i]; 
+          ellipse(piece.x * tileSize + tileSize / 2, piece.y * tileSize + tileSize / 2, tileSize / 2);
+        }
+    
+        
+        fill("orange");
+        for (let i = 8; i < 16; i++) {
+          const piece = this.pieces[i]; 
+          ellipse(piece.x * tileSize + tileSize / 2, piece.y * tileSize + tileSize / 2, tileSize / 2);
+        }
+      }
+   
 }
